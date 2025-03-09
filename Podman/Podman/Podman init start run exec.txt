@@ -1,0 +1,807 @@
+###########################################################################################################################
+
+# Podman
+
+###########################################################################################################################
+***************************************************************************************************************************
+
+# Minio 
+
+***************************************************************************************************************************
+
+# Podman # podman-desktop-1.15.0-arm64.dmg
+[
+% cd $HOME
+% mkdir - p Podman
+% cd Podman
+]
+
+[
+% brew install podman
+]
+[
+% brew uninstall podman
+
+% ls /opt
+% ls /opt/podman
+% ls /opt/podman/bin
+% ls /opt/podman/bin/podman
+% sudo rm -rf /opt/podman
+
+% ls /etc/paths.d
+% sudo rm -rf /etc/paths.d/podman-pkg
+]
+
+% podman --version 
+
+% podman version
+[
+Cannot connect to Podman. Please verify your connection to the Linux system using `podman system connection list`, or try `podman machine init` and `podman machine start` to manage a new Linux VM
+Error: unable to connect to Podman socket: Get "http://d/v5.3.1/libpod/_ping": dial unix /var/folders/sr/qqd7qg150d7006zgzlcsy_4m0000gn/T/storage-run-501/podman/podman.sock: connect: no such file or directory
+]
+
+% podman info
+[
+OS: darwin/arm64
+provider: applehv
+version: 5.3.1
+
+Cannot connect to Podman. Please verify your connection to the Linux system using `podman system connection list`, or try `podman machine init` and `podman machine start` to manage a new Linux VM
+Error: unable to connect to Podman socket: Get "http://d/v5.3.1/libpod/_ping": dial unix /var/folders/sr/qqd7qg150d7006zgzlcsy_4m0000gn/T/storage-run-501/podman/podman.sock: connect: no such file or directory
+]
+
+% podman system connection list
+[
+Name        URI         Identity    Default     ReadWrite
+]
+
+[
+% ls ~/.ssh
+% rm -rf ~/.ssh
+]
+% podman machine init
+[
+Looking up Podman Machine image at quay.io/podman/machine-os:5.3 to create VM
+Getting image source signatures
+Copying blob 13b69bec7030 done   | 
+Copying config 44136fa355 done   | 
+Writing manifest to image destination
+13b69bec70305ccd85d47a0bd6d2357381c957cf87dceb862427aace4b964a2b
+Extracting compressed file: podman-machine-default-arm64.raw: done  
+Machine init complete
+To start your machine run:
+
+	podman machine start
+]
+
+[
+% ls $HOME/.local/share/containers/podman
+% ls $HOME/.local/share/containers/podman/machine
+% ls $HOME/.local/share/containers/podman/machine/machine
+]
+
+% podman system connection list
+[
+Name                         URI                                                         Identity                                                           Default     ReadWrite
+podman-machine-default       ssh://core@127.0.0.1:51404/run/user/501/podman/podman.sock  /Users/rajaniapple/.local/share/containers/podman/machine/machine  true        true
+podman-machine-default-root  ssh://root@127.0.0.1:51404/run/podman/podman.sock           /Users/rajaniapple/.local/share/containers/podman/machine/machine  false       true
+]
+
+% podman machine start
+[
+WARN[0000] podman helper is installed, but was not able to claim the global docker sock 
+
+This machine is currently configured in rootless mode. If your containers
+require root permissions (e.g. ports < 1024), or if you run into compatibility
+issues with non-podman clients, you can switch using the following command:
+
+	podman machine set --rootful
+
+API forwarding listening on: /var/folders/sr/qqd7qg150d7006zgzlcsy_4m0000gn/T/podman/podman-machine-default-api.sock
+
+Another process was listening on the default Docker API socket address.
+You can still connect Docker API clients by setting DOCKER_HOST using the
+following command in your terminal session:
+
+        export DOCKER_HOST='unix:///var/folders/sr/qqd7qg150d7006zgzlcsy_4m0000gn/T/podman/podman-machine-default-api.sock'
+
+Machine "podman-machine-default" started successfully
+]
+
+% podman info
+[
+host:
+  arch: arm64
+  buildahVersion: 1.38.0
+  cgroupControllers:
+  - cpu
+  - io
+  - memory
+  - pids
+  cgroupManager: systemd
+  cgroupVersion: v2
+  conmon:
+    package: conmon-2.1.12-2.fc40.aarch64
+    path: /usr/bin/conmon
+    version: 'conmon version 2.1.12, commit: '
+  cpuUtilization:
+    idlePercent: 96.29
+    systemPercent: 2.18
+    userPercent: 1.52
+  cpus: 4
+  databaseBackend: sqlite
+  distribution:
+    distribution: fedora
+    variant: coreos
+    version: "40"
+  eventLogger: journald
+  freeLocks: 2048
+  hostname: localhost.localdomain
+  idMappings:
+    gidmap:
+    - container_id: 0
+      host_id: 1000
+      size: 1
+    - container_id: 1
+      host_id: 100000
+      size: 1000000
+    uidmap:
+    - container_id: 0
+      host_id: 501
+      size: 1
+    - container_id: 1
+      host_id: 100000
+      size: 1000000
+  kernel: 6.11.3-200.fc40.aarch64
+  linkmode: dynamic
+  logDriver: journald
+  memFree: 1536864256
+  memTotal: 2043133952
+  networkBackend: netavark
+  networkBackendInfo:
+    backend: netavark
+    dns:
+      package: aardvark-dns-1.12.2-2.fc40.aarch64
+      path: /usr/libexec/podman/aardvark-dns
+      version: aardvark-dns 1.12.2
+    package: netavark-1.12.2-1.fc40.aarch64
+    path: /usr/libexec/podman/netavark
+    version: netavark 1.12.2
+  ociRuntime:
+    name: crun
+    package: crun-1.17-1.fc40.aarch64
+    path: /usr/bin/crun
+    version: |-
+      crun version 1.17
+      commit: 000fa0d4eeed8938301f3bcf8206405315bc1017
+      rundir: /run/user/501/crun
+      spec: 1.0.0
+      +SYSTEMD +SELINUX +APPARMOR +CAP +SECCOMP +EBPF +CRIU +LIBKRUN +WASM:wasmedge +YAJL
+  os: linux
+  pasta:
+    executable: /usr/bin/pasta
+    package: passt-0^20240906.g6b38f07-1.fc40.aarch64
+    version: |
+      pasta 0^20240906.g6b38f07-1.fc40.aarch64-pasta
+      Copyright Red Hat
+      GNU General Public License, version 2 or later
+        <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
+      This is free software: you are free to change and redistribute it.
+      There is NO WARRANTY, to the extent permitted by law.
+  remoteSocket:
+    exists: true
+    path: unix:///run/user/501/podman/podman.sock
+  rootlessNetworkCmd: pasta
+  security:
+    apparmorEnabled: false
+    capabilities: CAP_CHOWN,CAP_DAC_OVERRIDE,CAP_FOWNER,CAP_FSETID,CAP_KILL,CAP_NET_BIND_SERVICE,CAP_SETFCAP,CAP_SETGID,CAP_SETPCAP,CAP_SETUID,CAP_SYS_CHROOT
+    rootless: true
+    seccompEnabled: true
+    seccompProfilePath: /usr/share/containers/seccomp.json
+    selinuxEnabled: true
+  serviceIsRemote: true
+  slirp4netns:
+    executable: /usr/bin/slirp4netns
+    package: slirp4netns-1.2.2-2.fc40.aarch64
+    version: |-
+      slirp4netns version 1.2.2
+      commit: 0ee2d87523e906518d34a6b423271e4826f71faf
+      libslirp: 4.7.0
+      SLIRP_CONFIG_VERSION_MAX: 4
+      libseccomp: 2.5.5
+  swapFree: 0
+  swapTotal: 0
+  uptime: 0h 1m 40.00s
+  variant: v8
+plugins:
+  authorization: null
+  log:
+  - k8s-file
+  - none
+  - passthrough
+  - journald
+  network:
+  - bridge
+  - macvlan
+  - ipvlan
+  volume:
+  - local
+registries:
+  search:
+  - docker.io
+store:
+  configFile: /var/home/core/.config/containers/storage.conf
+  containerStore:
+    number: 0
+    paused: 0
+    running: 0
+    stopped: 0
+  graphDriverName: overlay
+  graphOptions: {}
+  graphRoot: /var/home/core/.local/share/containers/storage
+  graphRootAllocated: 106769133568
+  graphRootUsed: 4700479488
+  graphStatus:
+    Backing Filesystem: xfs
+    Native Overlay Diff: "true"
+    Supports d_type: "true"
+    Supports shifting: "false"
+    Supports volatile: "true"
+    Using metacopy: "false"
+  imageCopyTmpDir: /var/tmp
+  imageStore:
+    number: 0
+  runRoot: /run/user/501/containers
+  transientStore: false
+  volumePath: /var/home/core/.local/share/containers/storage/volumes
+version:
+  APIVersion: 5.3.1
+  Built: 1732147200
+  BuiltTime: Thu Nov 21 05:30:00 2024
+  GitCommit: ""
+  GoVersion: go1.22.7
+  Os: linux
+  OsArch: linux/arm64
+  Version: 5.3.1
+]
+
+% podman network create node-mongodb-app-network
+
+% podman network list
+
+[
+% podman run \
+  -p 9000:9000 \
+  -p 9090:9090 \
+  --name minio \
+  --network=node-mongodb-app-network \
+  -v Minio:/data \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  dockerrajani/minio:version1.0.0 server /data --console-address ":9090"
+]
+
+[
+Visibility: Public
+https://github.com/users/RajaniCode/packages/container/package/minio
+]
+% podman run \
+  -p 9000:9000 \
+  -p 9090:9090 \
+  --name minio \
+  --network=node-mongodb-app-network \
+  -v Minio:/data \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  ghcr.io/rajanicode/minio:version1.0.0 server /data --console-address ":9090"
+
+
+# Terminal New Window
+% open http://127.0.0.1:9000/
+# http://127.0.0.1:9090/login # minioadmin # minioadmin
+# http://127.0.0.1:9090/buckets/add-bucket
+# Create Bucket
+# Bucket Name*: rajani.podman.minio
+# Object Browser
+# Upload
+
+% open http://127.0.0.1:9090/
+# http://127.0.0.1:9090/
+
+# SSH
+% podman machine list
+[
+NAME                     VM TYPE     CREATED         LAST UP            CPUS        MEMORY      DISK SIZE
+podman-machine-default*  applehv     20 minutes ago  Currently running  4           2GiB        100GiB
+]
+
+% podman machine ssh podman-machine-default
+$ cat /etc/os-release
+$ rpm-ostree --version
+$ sudo rpm-ostree install mc
+$ sudo rpm-ostree update
+[
+Run "systemctl reboot" to start a reboot
+]
+$ systemctl reboot
+[
+Please retry operation after closing inhibitors and logging out other users.
+Alternatively, ignore inhibitors and users with 'systemctl reboot -i'
+]
+$ sudo systemctl reboot -i
+[
+core@localhost:/$ sudo systemctl reboot -i
+
+Broadcast message from root@localhost on pts/1 (Tue 2025-01-21 17:07:20 UTC):
+
+The system will reboot now!
+
+core@localhost:/$ Connection to localhost closed by remote host.
+]
+
+% podman machine ssh podman-machine-default
+$ curl http://127.0.0.1:9090/
+$ find . -type d -depth -iname "Minio" -print
+$ ls ./.local/share/containers/storage/volumes/Minio/_data/rajani.podman.minio
+Containers.png  podman.io.png
+$ exit
+
+% podman exec -it minio bash
+[
+# cat /etc/os-release
+# ls /etc
+# ls /usr/bin 
+# mc --version
+# mc ls data
+# mc ls data/rajani.podman.minio
+[
+[2025-01-21 22:31:01 UTC]    21B Containers.png/
+[2025-01-21 22:30:32 UTC]    21B podman.io.png/
+]
+
+[
+% podman ps --all --quiet
+% podman container list --all --quiet
+% podman image list --all --quiet
+% podman volume list --quiet
+% podman network list --quiet
+]
+
+% podman ps --all
+[
+CONTAINER ID  IMAGE                                      COMMAND               CREATED         STATUS         PORTS                                           NAMES
+d344b7193df0  docker.io/dockerrajani/minio:version1.0.0  server /data --co...  47 minutes ago  Up 47 minutes  0.0.0.0:9000->9000/tcp, 0.0.0.0:9090->9090/tcp  minio
+]
+
+% podman container list --all
+[
+CONTAINER ID  IMAGE                                      COMMAND               CREATED         STATUS         PORTS                                           NAMES
+d344b7193df0  docker.io/dockerrajani/minio:version1.0.0  server /data --co...  48 minutes ago  Up 48 minutes  0.0.0.0:9000->9000/tcp, 0.0.0.0:9090->9090/tcp  minio
+]
+
+% podman image list --all 
+[
+REPOSITORY                    TAG           IMAGE ID      CREATED        SIZE
+docker.io/dockerrajani/minio  version1.0.0  8c6e49e2e9c7  14 months ago  144 MB
+]
+
+% podman volume list
+[
+DRIVER      VOLUME NAME
+local       Minio
+]
+
+% podman network list 
+[
+NETWORK ID    NAME                      DRIVER
+9072c833e412  node-mongodb-app-network  bridge
+2f259bab93aa  podman                    bridge
+]
+
+***************************************************************************************************************************
+
+# MongoDB
+
+***************************************************************************************************************************
+
+# Terminal New Window
+# node-mongodb-app-network
+% podman network list
+
+[
+% podman run \
+  -p 27017:27017 \
+  --name=mongo \
+  --rm \
+  --network=node-mongodb-app-network \
+  dockerrajani/mongo:version1.0.0
+]
+[
+Visibility: Public
+https://github.com/users/RajaniCode/packages/container/package/mongo
+]
+% podman run \
+  -p 27017:27017 \
+  --name=mongo \
+  --rm \
+  --network=node-mongodb-app-network \
+  ghcr.io/rajanicode/mongo:version1.0.0
+
+# Terminal New Window
+% curl http://localhost:27017/
+[
+It looks like you are trying to access MongoDB over HTTP on the native driver port.
+]
+
+% podman exec -it mongo bash
+[
+# apt-get --version
+# apt-get update
+]
+# apt --version
+# apt update
+# apt install curl
+# curl --version
+# curl http://localhost:27017/
+[
+It looks like you are trying to access MongoDB over HTTP on the native driver port.
+]
+# mongosh
+> db.version()
+> show dbs
+> use dev
+> show collections
+> db.notes.find()
+> db.dropDatabase()
+> use test
+> show dbs
+> exit
+# exit
+]
+
+# Terminal New Window
+% podman inspect mongo
+
+***************************************************************************************************************************
+
+# Node.js # node-mongodb-app:version1.0.0
+
+***************************************************************************************************************************
+
+# Terminal New Window
+# node-mongodb-app-network
+% podman network list
+
+[
+% podman run \
+  --name=node-mongodb-app-v1 \
+  --rm \
+  --network=node-mongodb-app-network \
+  -p 3001:3001 \
+  -e PORT=3001 \
+  -e MONGO_URL=mongodb://mongo:27017/dev \
+  dockerrajani/node-mongodb-app:version1.0.0
+]
+[
+Visibility: Public
+https://github.com/users/RajaniCode/packages/container/package/node-mongodb-app
+]
+% podman run \
+  --name=node-mongodb-app-v1 \
+  --rm \
+  --network=node-mongodb-app-network \
+  -p 3001:3001 \
+  -e PORT=3001 \
+  -e MONGO_URL=mongodb://mongo:27017/dev \
+  ghcr.io/rajanicode/node-mongodb-app:version1.0.0
+
+# Terminal New Window
+% curl http://localhost:3001/
+% open http://localhost:3001/
+
+[
+% podman exec -it node-mongodb-app-v1 bash
+]
+% podman exec -it node-mongodb-app-v1 /bin/sh
+$ apk --version
+[
+$ sudo apk update
+]
+$ wget -V
+
+$ wget -S -O - http://localhost:3001/
+$ exit
+
+
+% docker inspect node-mongodb-app-v1
+
+***************************************************************************************************************************
+
+# Node.js # node-mongodb-app:version2.0.0
+
+***************************************************************************************************************************
+
+# Terminal New Window
+# node-mongodb-app-network
+% podman network list
+
+[
+% podman ps --all
+% podman stop minio
+% podman stop mongo
+% podman stop node-mongodb-app-v1
+% podman stop node-mongodb-app-v2
+% podman stop $(podman container list -a -q)
+]
+[
+% podman run \
+  --name=node-mongodb-app-v2 \
+  --rm \
+  --network=node-mongodb-app-network \
+  -p 3002:3002 \
+  -e PORT=3002 \
+  -e MONGO_URL=mongodb://mongo:27017/dev \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  -e "MINIO_HOST=minio" \
+  dockerrajani/node-mongodb-app:version2.0.0
+]
+[
+Visibility: Public
+https://github.com/users/RajaniCode/packages/container/package/node-mongodb-app
+]
+% podman run \
+  --name=node-mongodb-app-v2 \
+  --rm \
+  --network=node-mongodb-app-network \
+  -p 3002:3002 \
+  -e PORT=3002 \
+  -e MONGO_URL=mongodb://mongo:27017/dev \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  -e "MINIO_HOST=minio" \
+  ghcr.io/rajanicode/node-mongodb-app:version2.0.0
+
+# Terminal New Window
+% curl http://localhost:3002/
+% open http://localhost:3002/
+
+% docker exec -it node-mongodb-app-v2 bash
+# apt-get update
+# apt-get install curl
+# curl http://localhost:3002/
+# exit
+
+# Terminal New Window
+% docker inspect node-mongodb-app-v2
+
+***************************************************************************************************************************
+
+# Podman # podman compose
+
+***************************************************************************************************************************
+
+% podman machine init
+
+% podman machine start
+
+[
+% pip3 --version
+
+% pip3 install podman-compose
+
+% podman compose version
+]
+
+% nano Dockerfile
+[
+FROM node:23.6.1-slim
+COPY . .
+RUN npm install
+CMD [ "node", "index.js" ]
+]
+
+% cat Dockerfile
+
+% echo node_modules > .dockerignore
+
+% cat .dockerignore
+
+% podman build -t node-mongodb-app-macos-arm64 .
+
+[
+% podman run -it --rm -p 3000:3000 node-mongodb-app-macos-arm64
+]
+
+[
+% podman container list 
+]
+
+% podman image list --all
+
+% podman tag node-mongodb-app-macos-arm64 dockerrajani/node-mongodb-app-macos-arm64:version1.0.0
+
+[
+% podman login quay.io
+
+% podman login ghcr.io
+]
+
+# Docker
+% docker build -t node-mongodb-app-macos-arm64 .
+
+[
+# NB # Delete
+# https://hub.docker.com/repository/docker/dockerrajani/node-mongodb-app/tags
+# dockerrajani > Repositories > node-mongodb-app > Tags 
+]
+
+[
+% docker image list --all
+
+% docker tag node-mongodb-app-macos-arm64 dockerrajani/node-mongodb-app:version2.0.0
+
+% docker push dockerrajani/node-mongodb-app:version2.0.0
+
+# https://hub.docker.com/repository/docker/dockerrajani/node-mongodb-app/tags
+
+% docker pull dockerrajani/node-mongodb-app:version2.0.0
+
+% ls ~/.docker
+
+% mv ~/.docker ~/Desktop
+]
+
+% podman machine init
+
+% podman machine start
+
+% podman network create node-mongodb-app-network
+
+% podman network list
+
+% podman run \
+  -p 9000:9000 \
+  -p 9090:9090 \
+  --name minio \
+  --network=node-mongodb-app-network \
+  -v Minio:/data \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  dockerrajani/minio:version1.0.0 server /data --console-address ":9090"
+
+# Terminal New Window
+# node-mongodb-app-network
+% podman network list
+
+% podman run \
+  -p 27017:27017 \
+  --name=mongo \
+  --rm \
+  --network=node-mongodb-app-network \
+  dockerrajani/mongo:version1.0.0
+
+# Terminal New Window
+# node-mongodb-app-network
+% podman network list
+
+% podman run \
+  --name=node-mongodb-app-v2 \
+  --rm \
+  --network=node-mongodb-app-network \
+  -p 3002:3002 \
+  -e PORT=3002 \
+  -e MONGO_URL=mongodb://mongo:27017/dev \
+  -e "MINIO_ACCESS_KEY=minioadmin" \
+  -e "MINIO_SECRET_KEY=minioadmin" \
+  -e "MINIO_HOST=minio" \
+  dockerrajani/node-mongodb-app:version2.0.0
+
+# http://localhost:9090/
+
+# http://localhost:27017/
+
+# http://localhost:3002/
+
+# mc alias set
+% mc alias set minio-podman-localhost  "http://127.0.0.1:9000/"  "minioadmin" "minioadmin" 
+
+# mc get
+% mc get minio-podman-localhost/minio-bucket/podman.io.png $HOME/Desktop/Node/Podman
+
+# mc get # Name
+% mc get "minio-podman-localhost/minio-bucket/Introducing Red Hat Quay.mp4" "$HOME/Desktop/Node/Podman/Introducing Red Hat Quay.mp4"
+
+# mc get # Create folder # mc-get
+% mc get "minio-podman-localhost/minio-bucket/Red Hat Quay Overview.mp4" $HOME/Desktop/Node/Podman/mc-get
+
+# mc get # Create folder # mc-get # New name # K8s vs OpenShift.mp4
+% mc get "minio-podman-localhost/minio-bucket/Kubernetes vs. OpenShift.mp4" "$HOME/Desktop/Node/Podman/mc-get/K8s vs. OpenShift.mp4"
+
+# Terminal New Window
+% podman stop $(podman ps -a -q)
+
+***************************************************************************************************************************
+
+# Podman # Cleanup
+
+***************************************************************************************************************************
+% podman system connection list
+% podman machine list 
+
+% podman container list 
+% podman image list --all
+
+[
+% podman ps --all --quiet
+% podman stop $(podman ps -a -q)
+% podman rm $(podman ps -a -q) --force
+]
+
+% podman container list --all --quiet
+% podman stop $(podman container list -a -q)
+% podman rm $(podman container list -a -q) --force
+% podman container prune
+
+% podman image list --all --quiet
+% podman rmi $(podman image list -a -q) --force 
+% podman image prune --all
+
+% podman volume list --quiet
+% podman volume rm $(podman volume list --quiet) --force
+% podman volume prune
+
+% podman network ls
+% podman network ls --quiet --filter dangling=true
+% podman network rm $(podman network ls --quiet --filter dangling=true)
+% podman network prune
+
+% podman system info
+% podman system prune --all --volumes
+
+% podman system connection list
+% podman machine list 
+% podman machine stop
+% podman machine rm podman-machine-default
+***************************************************************************************************************************
+
+# Podman
+
+**************************************************************************************************************************
+% brew install podman
+
+[
+% brew uninstall podman
+
+% ls /opt
+% ls /opt/podman
+% ls /opt/podman/bin
+% ls /opt/podman/bin/podman
+% sudo rm -rf /opt/podman
+
+% ls /etc/paths.d
+% sudo rm -rf /etc/paths.d/podman-pkg
+
+% ls ~/.local
+% rm -rf ~/.local
+
+% ls ~/.config
+% rm -rf ~/.config
+]
+***************************************************************************************************************************
+###########################################################################################################################
+
+
+// Credits
+/*
+https://podman.io/
+https://nodejs.org/
+https://npmjs.com/
+https://pnpm.io/
+https://expressjs.com/
+https://mongodb.com/
+https://min.io/
+https://ghcr.io/
+https://quay.io/
+https://docker.com/
+*/
